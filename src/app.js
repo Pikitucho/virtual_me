@@ -155,8 +155,21 @@ const elements = {
   nextSteps: document.querySelector('#next-steps'),
   passportOutput: document.querySelector('#passport-output'),
   privacyControls: document.querySelectorAll('[data-share]'),
+ codex/outline-core-components-of-virtual-me-2g3dbw
   navItems: document.querySelectorAll('[data-target-screen]'),
   screens: document.querySelectorAll('[data-screen]'),
+
+ /outline-core-components-of-virtual-me-l61ler
+  navItems: document.querySelectorAll('[data-target-screen]'),
+  screens: document.querySelectorAll('[data-screen]'),
+
+ codex/outline-core-components-of-virtual-me-yjatpv
+  navItems: document.querySelectorAll('[data-target-screen]'),
+  screens: document.querySelectorAll('[data-screen]'),
+
+ main
+ main
+ main
 };
 
 init();
@@ -185,6 +198,13 @@ function init() {
     control.addEventListener('change', renderPassport);
   });
 
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
+ codex/outline-core-components-of-virtual-me-l61ler
+
+ codex/outline-core-components-of-virtual-me-yjatpv
+ main
+ main
   elements.navItems.forEach((item) => {
     item.addEventListener('click', () => showScreen(item.dataset.targetScreen));
   });
@@ -206,6 +226,17 @@ function showScreen(screenName) {
   });
 }
 
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
+ codex/outline-core-components-of-virtual-me-l61ler
+
+
+  render();
+}
+
+ main
+ main
+ main
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
