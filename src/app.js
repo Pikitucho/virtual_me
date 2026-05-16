@@ -155,21 +155,8 @@ const elements = {
   nextSteps: document.querySelector('#next-steps'),
   passportOutput: document.querySelector('#passport-output'),
   privacyControls: document.querySelectorAll('[data-share]'),
- codex/outline-core-components-of-virtual-me-2g3dbw
   navItems: document.querySelectorAll('[data-target-screen]'),
   screens: document.querySelectorAll('[data-screen]'),
-
- /outline-core-components-of-virtual-me-l61ler
-  navItems: document.querySelectorAll('[data-target-screen]'),
-  screens: document.querySelectorAll('[data-screen]'),
-
- codex/outline-core-components-of-virtual-me-yjatpv
-  navItems: document.querySelectorAll('[data-target-screen]'),
-  screens: document.querySelectorAll('[data-screen]'),
-
- main
- main
- main
 };
 
 init();
@@ -198,13 +185,6 @@ function init() {
     control.addEventListener('change', renderPassport);
   });
 
- codex/outline-core-components-of-virtual-me-2g3dbw
-
- codex/outline-core-components-of-virtual-me-l61ler
-
- codex/outline-core-components-of-virtual-me-yjatpv
- main
- main
   elements.navItems.forEach((item) => {
     item.addEventListener('click', () => showScreen(item.dataset.targetScreen));
   });
@@ -226,17 +206,6 @@ function showScreen(screenName) {
   });
 }
 
- codex/outline-core-components-of-virtual-me-2g3dbw
-
- codex/outline-core-components-of-virtual-me-l61ler
-
-
-  render();
-}
-
- main
- main
- main
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -387,51 +356,76 @@ function renderActivityLog() {
 
 function renderUniverse() {
   const totals = calculateTotals();
-  elements.universeMap.innerHTML = SKILL_UNIVERSE.map(
-    (galaxy) => `
-      <article class="galaxy">
-        <div>
-          <p class="eyebrow">${galaxy.theme}</p>
-          <h3>${galaxy.name}</h3>
-        </div>
-        <div class="constellations">
-          ${galaxy.constellations
-            .map(
-              (constellation) => `
-                <section class="constellation">
-                  <h4>${constellation.name}</h4>
-                  <div class="stars">
-                    ${constellation.stars.map((star) => renderStar(star, totals)).join('')}
-                  </div>
-                </section>`,
-            )
-            .join('')}
-        </div>
-      </article>`,
-  ).join('');
+  elements.universeMap.innerHTML = `
+    <section class="universe-viewport" aria-label="Prototype Skill Universe galaxy map">
+      <div class="space-depth-layer far" aria-hidden="true"></div>
+      <div class="space-depth-layer mid" aria-hidden="true"></div>
+      <div class="space-horizon" aria-hidden="true"></div>
+      <div class="zoom-rail" aria-hidden="true">
+        <span>Galaxy</span>
+        <span>Constellation</span>
+        <span>Star</span>
+      </div>
+      <div class="galaxy-map-core">
+        ${SKILL_UNIVERSE.map((galaxy, galaxyIndex) => renderGalaxyMap(galaxy, galaxyIndex, totals)).join('')}
+      </div>
+      <p class="universe-hint">Placeholder navigation concept: life domains orbit as galaxies; skill paths arc as constellations; stars glow by lock state.</p>
+    </section>`;
 
   document.querySelectorAll('[data-unlock-star]').forEach((button) => {
     button.addEventListener('click', () => unlockStar(button.dataset.unlockStar));
   });
 }
 
-function renderStar(star, totals) {
+function renderGalaxyMap(galaxy, galaxyIndex, totals) {
+  return `
+    <article class="galaxy-system galaxy-system-${galaxyIndex + 1}" aria-label="${galaxy.name}: ${galaxy.theme}">
+      <span class="galaxy-nebula" aria-hidden="true"></span>
+      <div class="galaxy-label">
+        <p>${galaxy.theme}</p>
+        <h3>${galaxy.name}</h3>
+      </div>
+      <div class="constellation-orbits">
+        ${galaxy.constellations
+          .map((constellation, constellationIndex) => renderConstellationMap(constellation, constellationIndex, totals))
+          .join('')}
+      </div>
+    </article>`;
+}
+
+function renderConstellationMap(constellation, constellationIndex, totals) {
+  const stars = constellation.stars
+    .map((star, starIndex) => renderStar(star, totals, starIndex))
+    .join('');
+
+  return `
+    <section class="constellation-path constellation-path-${constellationIndex + 1}" aria-label="${constellation.name}">
+      <span class="constellation-line" aria-hidden="true"></span>
+      <h4>${constellation.name}</h4>
+      <div class="stars">${stars}</div>
+    </section>`;
+}
+
+function renderStar(star, totals, starIndex = 0) {
   const status = getStarStatus(star);
   const requirementText = Object.entries(star.requiredStats)
     .map(([key, value]) => `${key} ${value}`)
     .join(', ');
   const canSpend = status.state === 'available' && totals.availablePerkPoints >= star.perkPointCost;
+  const starDetails = `${star.name}. ${status.label}. Requires ${requirementText}. ${star.description}`;
+  const unlockControl = canSpend
+    ? `<button class="star-orb-button" type="button" data-unlock-star="${star.id}" aria-label="Unlock ${star.name}"></button>`
+    : '<span class="star-orb-button" aria-hidden="true"></span>';
 
   return `
-    <article class="star ${status.state}">
-      <span class="star-orb"></span>
-      <div>
-        <p class="star-type">${star.type} Star · ${status.label}</p>
+    <article class="star star-${starIndex + 1} ${status.state}" aria-label="${starDetails}">
+      ${unlockControl}
+      <div class="star-scanline" aria-hidden="true"></div>
+      <div class="star-label">
+        <p class="star-type">${star.type} · ${status.label}</p>
         <h5>${star.name}</h5>
-        <p>${star.description}</p>
-        <small>Requires ${requirementText} · Cost ${star.perkPointCost} perk point${star.perkPointCost === 1 ? '' : 's'}</small>
+        <small>${requirementText} · ${star.perkPointCost} PP</small>
         ${status.reason ? `<small>${status.reason}</small>` : ''}
-        ${canSpend ? `<button class="button mini" data-unlock-star="${star.id}">Unlock star</button>` : ''}
       </div>
     </article>`;
 }
