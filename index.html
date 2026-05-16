@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Me: Origins</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="animated-animus-background" data-component="AnimatedAnimusBackground" aria-hidden="true">
+      <span class="animus-grid-layer"></span>
+      <span class="animus-light-sweep horizontal"></span>
+      <span class="animus-light-sweep vertical"></span>
+      <span class="animus-depth-plane"></span>
+    </div>
+
+    <main class="app-shell" aria-label="Virtual Me mobile game prototype">
+      <section id="CharacterScreen" class="screen character-screen is-active" data-screen="stats" data-component="CharacterScreen" aria-label="CharacterScreen">
+        <div class="simulation-aura" aria-hidden="true"></div>
+
+        <header class="level-hud" aria-live="polite">
+          <p class="eyebrow">Codex Vitae</p>
+          <div class="level-badge">
+            <span>Level</span>
+            <strong id="character-level">1</strong>
+          </div>
+          <input id="display-name" class="player-name" type="text" maxlength="32" aria-label="Character name" />
+          <div class="progress-chips">
+            <span><strong id="total-stat-points">0</strong> Stat Points</span>
+            <span><strong id="available-perk-points">3</strong> Perk Points</span>
+          </div>
+        </header>
+
+        <section class="avatar-stage" aria-label="Full-body character avatar">
+          <div class="portal-ring"></div>
+          <div class="character-avatar" aria-hidden="true">
+            <span class="avatar-head"></span>
+            <span class="avatar-torso"></span>
+            <span class="avatar-arm left"></span>
+            <span class="avatar-arm right"></span>
+            <span class="avatar-leg left"></span>
+            <span class="avatar-leg right"></span>
+            <span class="avatar-core"></span>
+          </div>
+          <p class="avatar-caption">One Character, Many Worlds</p>
+        </section>
+
+        <section class="stat-dock" aria-labelledby="stat-dock-title">
+          <div class="dock-heading">
+            <p id="stat-dock-title">Ability Now</p>
+            <span>Legacy never fades</span>
+          </div>
+          <div id="stats-grid" class="stats-grid"></div>
+        </section>
+      </section>
+
+      <section id="activities-screen" class="screen panel-screen" data-screen="activities">
+        <div class="panel-card">
+          <div class="section-heading">
+            <p class="eyebrow">Growth, not grinding</p>
+            <h1>Log IRL progress</h1>
+            <p>Convert real actions into fragments while preserving Legacy separately from current Ability Now.</p>
+          </div>
+          <form id="activity-form" class="activity-form">
+            <label>
+              Stat trained
+              <select id="activity-stat"></select>
+            </label>
+            <label>
+              Activity type
+              <input id="activity-type" type="text" placeholder="Workout, study, meditation..." required />
+            </label>
+            <label>
+              Effort level
+              <input id="activity-effort" type="range" min="1" max="10" value="5" />
+              <span id="effort-value">5</span>
+            </label>
+            <label>
+              Evidence / notes
+              <textarea id="activity-description" placeholder="What did you actually do?" required></textarea>
+            </label>
+            <button class="button primary" type="submit">Convert action into fragments</button>
+          </form>
+          <div class="activity-log">
+            <h2>Recent activity</h2>
+            <ul id="activity-list"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="universe-screen" class="screen panel-screen" data-screen="universe">
+        <div class="panel-card universe-card">
+          <div class="section-heading">
+            <p class="eyebrow">Skill Universe</p>
+            <h1>Galaxies, constellations, and stars</h1>
+            <p>
+              Stars become available when Ability Now and prerequisites are met.
+              Unlocking means ownership; activation still depends on current stats.
+            </p>
+          </div>
+          <div id="universe-map" class="universe-map" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section id="settings-screen" class="screen panel-screen" data-screen="settings">
+        <div class="panel-card">
+          <div class="section-heading">
+            <p class="eyebrow">Settings</p>
+            <h1>Passport and next steps</h1>
+          </div>
+          <section class="settings-block">
+            <h2>What to do next IRL</h2>
+            <ul id="next-steps" class="next-steps"></ul>
+          </section>
+          <section id="passport" class="settings-block">
+            <h2>Read-only Game Passport</h2>
+            <p>Choose what a connected experience can see. Developer access stays read-only unless explicitly authorized.</p>
+            <div class="privacy-controls">
+              <label><input type="checkbox" data-share="stats" checked /> Share stats</label>
+              <label><input type="checkbox" data-share="stars" checked /> Share unlocked stars</label>
+              <label><input type="checkbox" data-share="activities" /> Share recent activity summary</label>
+            </div>
+            <pre id="passport-output"></pre>
+          </section>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Primary">
+        <button class="nav-item is-active" type="button" data-target-screen="stats">
+          <span>✦</span>
+          Stats
+        </button>
+        <button class="nav-item" type="button" data-target-screen="activities">
+          <span>◆</span>
+          Activities
+        </button>
+        <button class="nav-item" type="button" data-target-screen="universe">
+          <span>✧</span>
+          Skill Universe
+        </button>
+        <button class="nav-item" type="button" data-target-screen="settings">
+          <span>⚙</span>
+          Settings
+        </button>
+      </nav>
+    </main>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
