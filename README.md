@@ -16,17 +16,26 @@ Virtual Me turns real-world growth into a durable character profile built around
 - A cosmic Skill Universe made of galaxies, constellations, and stars.
 - Verified achievements, credentials, perks, and privacy controls.
 
+ codex/outline-core-components-of-virtual-me-yjatpv
+
+ codex/outline-core-components-of-virtual-me-uk5xv6
+ main
 
 ## Run the MVP prototype
 
 This repository now includes a dependency-free browser prototype for checking IRL progression locally.
 
 ```bash
+ codex/outline-core-components-of-virtual-me-yjatpv
 npm run dev
+
+npm start
+ main
 ```
 
 Then open <http://127.0.0.1:4173/> to log real actions, inspect Ability Now and Legacy, unlock available stars, and copy the read-only Game Passport export.
 
+ codex/outline-core-components-of-virtual-me-yjatpv
 For a production-style local check, run:
 
 ```bash
@@ -36,6 +45,10 @@ npm start
 
 The Vercel deployment guide is in [`docs/vercel-deployment.md`](docs/vercel-deployment.md).
 
+
+
+ main
+ main
 ## Product principles
 
 The system must preserve trust and avoid exploitative progression mechanics:

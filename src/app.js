@@ -155,8 +155,11 @@ const elements = {
   nextSteps: document.querySelector('#next-steps'),
   passportOutput: document.querySelector('#passport-output'),
   privacyControls: document.querySelectorAll('[data-share]'),
+ codex/outline-core-components-of-virtual-me-yjatpv
   navItems: document.querySelectorAll('[data-target-screen]'),
   screens: document.querySelectorAll('[data-screen]'),
+
+ main
 };
 
 init();
@@ -185,6 +188,7 @@ function init() {
     control.addEventListener('change', renderPassport);
   });
 
+ codex/outline-core-components-of-virtual-me-yjatpv
   elements.navItems.forEach((item) => {
     item.addEventListener('click', () => showScreen(item.dataset.targetScreen));
   });
@@ -206,6 +210,11 @@ function showScreen(screenName) {
   });
 }
 
+
+  render();
+}
+
+ main
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
