@@ -17,6 +17,10 @@ Virtual Me turns real-world growth into a durable character profile built around
 - Verified achievements, credentials, perks, and privacy controls.
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ codex/outline-core-components-of-virtual-me-yjatpv
+
+ codex/outline-core-components-of-virtual-me-kwkxod
+ main
 
  codex/outline-core-components-of-virtual-me-uk5xv6
  main
@@ -27,6 +31,10 @@ This repository now includes a dependency-free browser prototype for checking IR
 
 ```bash
  codex/outline-core-components-of-virtual-me-yjatpv
+ codex/outline-core-components-of-virtual-me-yjatpv
+
+ codex/outline-core-components-of-virtual-me-kwkxod
+ main
 npm run dev
 
 npm start
@@ -36,6 +44,10 @@ npm start
 Then open <http://127.0.0.1:4173/> to log real actions, inspect Ability Now and Legacy, unlock available stars, and copy the read-only Game Passport export.
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ codex/outline-core-components-of-virtual-me-yjatpv
+
+ codex/outline-core-components-of-virtual-me-kwkxod
+ main
 For a production-style local check, run:
 
 ```bash
