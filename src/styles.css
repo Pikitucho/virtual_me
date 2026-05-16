@@ -1,5 +1,8 @@
 :root {
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
   color-scheme: light;
   --bg: #f6f8fb;
   --panel: rgba(255, 255, 255, 0.62);
@@ -15,6 +18,8 @@
   --green: #1f9b66;
   --danger: #d65f5f;
   --nav-height: 86px;
+ codex/outline-core-components-of-virtual-me-l61ler
+
 
   color-scheme: dark;
   --bg: #090d1f;
@@ -29,6 +34,7 @@
   --green: #90f7b1;
   --danger: #ff8b8b;
  main
+ main
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -37,11 +43,16 @@
 }
 
 html {
+ codex/outline-core-components-of-virtual-me-l61ler
+  min-height: 100%;
+  background: var(--bg);
+
  codex/outline-core-components-of-virtual-me-yjatpv
   min-height: 100%;
   background: var(--bg);
 
   scroll-behavior: smooth;
+ main
  main
 }
 
@@ -49,7 +60,10 @@ body {
   min-height: 100vh;
   margin: 0;
   color: var(--text);
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
   background: linear-gradient(180deg, #fbfcff 0%, #eef3f8 54%, #e5ebf2 100%);
   overflow-x: hidden;
 }
@@ -456,6 +470,8 @@ button {
   color: var(--muted);
   font-size: 0.74rem;
   font-weight: 800;
+ codex/outline-core-components-of-virtual-me-l61ler
+
   background:
     radial-gradient(circle at 20% 10%, rgba(115, 232, 255, 0.2), transparent 28rem),
     radial-gradient(circle at 85% 20%, rgba(157, 140, 255, 0.18), transparent 24rem),
@@ -652,11 +668,15 @@ label {
 .section-heading p:last-child {
   color: var(--muted);
  main
+ main
 }
 
 .stats-grid {
   display: grid;
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
 }
@@ -673,6 +693,8 @@ label {
 
 .stat-card.healthy {
   border-color: rgba(144, 247, 177, 0.42);
+ codex/outline-core-components-of-virtual-me-l61ler
+
 
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
@@ -688,6 +710,7 @@ label {
 .stat-card.healthy {
   border-color: rgba(144, 247, 177, 0.4);
  main
+ main
 }
 
 .stat-card.watch {
@@ -698,7 +721,10 @@ label {
   border-color: rgba(255, 139, 139, 0.5);
 }
 
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
 .stat-topline {
   display: flex;
   align-items: start;
@@ -745,6 +771,8 @@ label {
   overflow: hidden;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.62);
+ codex/outline-core-components-of-virtual-me-l61ler
+
 .stat-topline,
 .meter-row {
   display: flex;
@@ -771,6 +799,7 @@ label {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
  main
+ main
 }
 
 .meter span {
@@ -782,7 +811,10 @@ label {
 
 .stat-meta {
   display: grid;
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
   grid-template-columns: 1fr;
   gap: 2px;
   margin-top: 7px;
@@ -842,11 +874,14 @@ label {
 .star small,
 .activity-log span {
   color: var(--muted);
+ codex/outline-core-components-of-virtual-me-l61ler
+
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   margin-top: 12px;
   color: var(--muted);
   font-size: 0.78rem;
+ main
  main
 }
 
@@ -859,7 +894,10 @@ label {
   list-style: none;
 }
 
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
 .activity-form {
   margin-top: 18px;
 }
@@ -920,8 +958,11 @@ textarea {
   border-radius: 16px;
   padding: 10px 12px;
   background: rgba(255, 255, 255, 0.5);
+ codex/outline-core-components-of-virtual-me-l61ler
+
 .universe-card {
   margin-bottom: 24px;
+ main
  main
 }
 
@@ -933,7 +974,10 @@ textarea {
 }
 
 .galaxy {
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
   display: grid;
   gap: 18px;
   border: 1px solid var(--line);
@@ -955,6 +999,8 @@ textarea {
 
 .stars {
   grid-template-columns: 1fr;
+ codex/outline-core-components-of-virtual-me-l61ler
+
   position: relative;
   display: grid;
   grid-template-columns: 230px minmax(0, 1fr);
@@ -973,6 +1019,7 @@ textarea {
 .stars {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
  main
+ main
 }
 
 .star {
@@ -982,9 +1029,13 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 14px;
+ codex/outline-core-components-of-virtual-me-l61ler
+  background: rgba(255, 255, 255, 0.54);
+
  codex/outline-core-components-of-virtual-me-yjatpv
   background: rgba(255, 255, 255, 0.54);
   background: rgba(5, 10, 28, 0.62);
+ main
  main
 }
 
@@ -1004,9 +1055,13 @@ textarea {
 
 .star.unlocked .star-orb {
   background: var(--cyan);
+ codex/outline-core-components-of-virtual-me-l61ler
+  box-shadow: 0 0 34px rgba(114, 232, 255, 0.9);
+
  codex/outline-core-components-of-virtual-me-yjatpv
   box-shadow: 0 0 34px rgba(114, 232, 255, 0.9);
   box-shadow: 0 0 34px rgba(115, 232, 255, 0.9);
+ main
  main
 }
 
@@ -1016,9 +1071,13 @@ textarea {
 }
 
 .star-type {
+ codex/outline-core-components-of-virtual-me-l61ler
+  margin: 0 0 4px;
+
  codex/outline-core-components-of-virtual-me-yjatpv
   margin: 0 0 4px;
   margin-bottom: 4px;
+ main
  main
   color: var(--gold) !important;
   font-size: 0.72rem;
@@ -1027,6 +1086,8 @@ textarea {
   text-transform: uppercase;
 }
 
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
 .star h5 {
   margin-bottom: 8px;
@@ -1034,12 +1095,16 @@ textarea {
 }
 
  main
+ main
 .star small {
   display: block;
   margin-top: 8px;
 }
 
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
 .privacy-controls {
   display: grid;
   gap: 10px;
@@ -1058,15 +1123,21 @@ textarea {
 
 pre {
   max-height: 340px;
+ codex/outline-core-components-of-virtual-me-l61ler
+
 
 pre {
   max-height: 420px;
+ main
  main
   overflow: auto;
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 16px;
+ codex/outline-core-components-of-virtual-me-l61ler
+
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
   color: #1d344d;
   background: rgba(255, 255, 255, 0.62);
   white-space: pre-wrap;
@@ -1147,6 +1218,8 @@ pre {
   .animus-light-sweep,
   .animus-depth-plane {
     animation: none;
+ codex/outline-core-components-of-virtual-me-l61ler
+
   color: #cbe8ff;
   background: rgba(0, 0, 0, 0.34);
   white-space: pre-wrap;
@@ -1162,6 +1235,7 @@ pre {
 
   h1 {
     letter-spacing: -0.05em;
+ main
  main
   }
 }
