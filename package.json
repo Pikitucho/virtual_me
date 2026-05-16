@@ -1,5 +1,8 @@
 {
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
+ main
     "name": "virtual-me-origins",
     "version": "0.1.0",
     "private": true,
@@ -10,6 +13,8 @@
         "build": "node scripts/build-static.js",
         "check": "node --check src/app.js && node --check scripts/build-static.js"
     }
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
 
   "name": "virtual-me-origins",
   "version": "0.1.0",
@@ -30,5 +35,6 @@
     "check": "node --check src/app.js"
  main
   }
+ main
  main
 }

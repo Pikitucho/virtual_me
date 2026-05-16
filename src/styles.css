@@ -1,7 +1,10 @@
 :root {
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
   color-scheme: light;
   --bg: #f6f8fb;
@@ -18,6 +21,8 @@
   --green: #1f9b66;
   --danger: #d65f5f;
   --nav-height: 86px;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
 
@@ -35,6 +40,7 @@
   --danger: #ff8b8b;
  main
  main
+ main
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -43,6 +49,10 @@
 }
 
 html {
+ codex/outline-core-components-of-virtual-me-2g3dbw
+  min-height: 100%;
+  background: var(--bg);
+
  codex/outline-core-components-of-virtual-me-l61ler
   min-height: 100%;
   background: var(--bg);
@@ -54,15 +64,19 @@ html {
   scroll-behavior: smooth;
  main
  main
+ main
 }
 
 body {
   min-height: 100vh;
   margin: 0;
   color: var(--text);
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
   background: linear-gradient(180deg, #fbfcff 0%, #eef3f8 54%, #e5ebf2 100%);
   overflow-x: hidden;
@@ -470,6 +484,8 @@ button {
   color: var(--muted);
   font-size: 0.74rem;
   font-weight: 800;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
   background:
@@ -669,13 +685,17 @@ label {
   color: var(--muted);
  main
  main
+ main
 }
 
 .stats-grid {
   display: grid;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
@@ -693,6 +713,8 @@ label {
 
 .stat-card.healthy {
   border-color: rgba(144, 247, 177, 0.42);
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
 
@@ -711,6 +733,7 @@ label {
   border-color: rgba(144, 247, 177, 0.4);
  main
  main
+ main
 }
 
 .stat-card.watch {
@@ -721,9 +744,12 @@ label {
   border-color: rgba(255, 139, 139, 0.5);
 }
 
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
 .stat-topline {
   display: flex;
@@ -771,6 +797,8 @@ label {
   overflow: hidden;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.62);
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
 .stat-topline,
@@ -800,6 +828,7 @@ label {
   background: rgba(255, 255, 255, 0.08);
  main
  main
+ main
 }
 
 .meter span {
@@ -811,9 +840,12 @@ label {
 
 .stat-meta {
   display: grid;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
   grid-template-columns: 1fr;
   gap: 2px;
@@ -874,6 +906,8 @@ label {
 .star small,
 .activity-log span {
   color: var(--muted);
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
   grid-template-columns: repeat(3, 1fr);
@@ -881,6 +915,7 @@ label {
   margin-top: 12px;
   color: var(--muted);
   font-size: 0.78rem;
+ main
  main
  main
 }
@@ -894,9 +929,12 @@ label {
   list-style: none;
 }
 
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
 .activity-form {
   margin-top: 18px;
@@ -958,10 +996,13 @@ textarea {
   border-radius: 16px;
   padding: 10px 12px;
   background: rgba(255, 255, 255, 0.5);
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
 .universe-card {
   margin-bottom: 24px;
+ main
  main
  main
 }
@@ -974,9 +1015,12 @@ textarea {
 }
 
 .galaxy {
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
   display: grid;
   gap: 18px;
@@ -999,6 +1043,8 @@ textarea {
 
 .stars {
   grid-template-columns: 1fr;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
   position: relative;
@@ -1020,6 +1066,7 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
  main
  main
+ main
 }
 
 .star {
@@ -1029,12 +1076,16 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 14px;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+  background: rgba(255, 255, 255, 0.54);
+
  codex/outline-core-components-of-virtual-me-l61ler
   background: rgba(255, 255, 255, 0.54);
 
  codex/outline-core-components-of-virtual-me-yjatpv
   background: rgba(255, 255, 255, 0.54);
   background: rgba(5, 10, 28, 0.62);
+ main
  main
  main
 }
@@ -1055,12 +1106,16 @@ textarea {
 
 .star.unlocked .star-orb {
   background: var(--cyan);
+ codex/outline-core-components-of-virtual-me-2g3dbw
+  box-shadow: 0 0 34px rgba(114, 232, 255, 0.9);
+
  codex/outline-core-components-of-virtual-me-l61ler
   box-shadow: 0 0 34px rgba(114, 232, 255, 0.9);
 
  codex/outline-core-components-of-virtual-me-yjatpv
   box-shadow: 0 0 34px rgba(114, 232, 255, 0.9);
   box-shadow: 0 0 34px rgba(115, 232, 255, 0.9);
+ main
  main
  main
 }
@@ -1071,6 +1126,9 @@ textarea {
 }
 
 .star-type {
+ codex/outline-core-components-of-virtual-me-2g3dbw
+  margin: 0 0 4px;
+
  codex/outline-core-components-of-virtual-me-l61ler
   margin: 0 0 4px;
 
@@ -1079,12 +1137,15 @@ textarea {
   margin-bottom: 4px;
  main
  main
+ main
   color: var(--gold) !important;
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+ codex/outline-core-components-of-virtual-me-2g3dbw
 
  codex/outline-core-components-of-virtual-me-l61ler
 
@@ -1096,14 +1157,18 @@ textarea {
 
  main
  main
+ main
 .star small {
   display: block;
   margin-top: 8px;
 }
 
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
 .privacy-controls {
   display: grid;
@@ -1123,6 +1188,8 @@ textarea {
 
 pre {
   max-height: 340px;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
 
@@ -1130,13 +1197,17 @@ pre {
   max-height: 420px;
  main
  main
+ main
   overflow: auto;
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 16px;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
  codex/outline-core-components-of-virtual-me-yjatpv
+ main
  main
   color: #1d344d;
   background: rgba(255, 255, 255, 0.62);
@@ -1218,6 +1289,8 @@ pre {
   .animus-light-sweep,
   .animus-depth-plane {
     animation: none;
+ codex/outline-core-components-of-virtual-me-2g3dbw
+
  codex/outline-core-components-of-virtual-me-l61ler
 
   color: #cbe8ff;
@@ -1235,6 +1308,7 @@ pre {
 
   h1 {
     letter-spacing: -0.05em;
+ main
  main
  main
   }
