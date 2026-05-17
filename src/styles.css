@@ -14,6 +14,11 @@
   --green: #1f9b66;
   --danger: #d65f5f;
   --nav-height: 86px;
+ codex/outline-core-components-of-virtual-me-59z2br
+  --animus-line: rgba(83, 132, 172, 0.15);
+  --animus-sweep: rgba(92, 176, 205, 0.22);
+
+ main
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -70,8 +75,13 @@ body::before {
 
 .animated-animus-background::before {
   background-image:
+ codex/outline-core-components-of-virtual-me-59z2br
+    linear-gradient(var(--animus-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--animus-line) 1px, transparent 1px),
+
     linear-gradient(rgba(83, 132, 172, 0.15) 1px, transparent 1px),
     linear-gradient(90deg, rgba(83, 132, 172, 0.15) 1px, transparent 1px),
+ main
     linear-gradient(rgba(255, 255, 255, 0.8) 2px, transparent 2px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.8) 2px, transparent 2px);
   background-size: 42px 42px, 42px 42px, 168px 168px, 168px 168px;
@@ -85,7 +95,11 @@ body::before {
 .animated-animus-background::after {
   background:
     linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.82), transparent),
+ codex/outline-core-components-of-virtual-me-59z2br
+    linear-gradient(180deg, transparent, var(--animus-sweep), transparent);
+
     linear-gradient(180deg, transparent, rgba(92, 176, 205, 0.22), transparent);
+ main
   filter: blur(18px);
   opacity: 0.58;
   transform: translateX(-42%);
@@ -655,6 +669,85 @@ textarea {
   background: rgba(255, 255, 255, 0.5);
 }
 
+ codex/outline-core-components-of-virtual-me-59z2br
+.universe-map,
+.constellations,
+.stars {
+  display: grid;
+  gap: 18px;
+}
+
+.galaxy {
+  display: grid;
+  gap: 18px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 16px;
+  background: radial-gradient(circle at 0 0, rgba(74, 159, 190, 0.13), rgba(255, 255, 255, 0.54));
+}
+
+.galaxy h3,
+.constellation h4,
+.star h5 {
+  margin: 0 0 8px;
+}
+
+.constellation {
+  border-left: 1px solid rgba(114, 232, 255, 0.35);
+  padding-left: 14px;
+}
+
+.stars {
+  grid-template-columns: 1fr;
+}
+
+.star {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.star-orb {
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+  border-radius: 999px;
+  background: #56607e;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+}
+
+.star.available .star-orb {
+  background: var(--gold);
+  box-shadow: 0 0 28px rgba(255, 211, 122, 0.75);
+}
+
+.star.unlocked .star-orb {
+  background: var(--cyan);
+  box-shadow: 0 0 34px rgba(114, 232, 255, 0.9);
+}
+
+.star.paused .star-orb {
+  background: var(--danger);
+  box-shadow: 0 0 24px rgba(255, 139, 139, 0.6);
+}
+
+.star-type {
+  margin: 0 0 4px;
+  color: var(--gold) !important;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.star small {
+  display: block;
+  margin-top: 8px;
+
 .universe-card {
   min-height: calc(100dvh - var(--nav-height) - 28px);
   background:
@@ -1011,6 +1104,7 @@ button.star-orb-button {
 
 @keyframes galaxyRotate {
   to { transform: rotate(360deg); }
+ main
 }
 
 .privacy-controls {
