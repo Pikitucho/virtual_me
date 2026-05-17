@@ -356,6 +356,7 @@ function renderActivityLog() {
 
 function renderUniverse() {
   const totals = calculateTotals();
+ codex/outline-core-components-of-virtual-me-59z2br
   elements.universeMap.innerHTML = SKILL_UNIVERSE.map(
     (galaxy) => `
       <article class="galaxy">
@@ -379,17 +380,68 @@ function renderUniverse() {
       </article>`,
   ).join('');
 
+  elements.universeMap.innerHTML = `
+    <section class="universe-viewport" aria-label="Prototype Skill Universe galaxy map">
+      <div class="space-depth-layer far" aria-hidden="true"></div>
+      <div class="space-depth-layer mid" aria-hidden="true"></div>
+      <div class="space-horizon" aria-hidden="true"></div>
+      <div class="zoom-rail" aria-hidden="true">
+        <span>Galaxy</span>
+        <span>Constellation</span>
+        <span>Star</span>
+      </div>
+      <div class="galaxy-map-core">
+        ${SKILL_UNIVERSE.map((galaxy, galaxyIndex) => renderGalaxyMap(galaxy, galaxyIndex, totals)).join('')}
+      </div>
+      <p class="universe-hint">Placeholder navigation concept: life domains orbit as galaxies; skill paths arc as constellations; stars glow by lock state.</p>
+    </section>`;
+ main
+
   document.querySelectorAll('[data-unlock-star]').forEach((button) => {
     button.addEventListener('click', () => unlockStar(button.dataset.unlockStar));
   });
 }
 
+ codex/outline-core-components-of-virtual-me-59z2br
 function renderStar(star, totals) {
+
+function renderGalaxyMap(galaxy, galaxyIndex, totals) {
+  return `
+    <article class="galaxy-system galaxy-system-${galaxyIndex + 1}" aria-label="${galaxy.name}: ${galaxy.theme}">
+      <span class="galaxy-nebula" aria-hidden="true"></span>
+      <div class="galaxy-label">
+        <p>${galaxy.theme}</p>
+        <h3>${galaxy.name}</h3>
+      </div>
+      <div class="constellation-orbits">
+        ${galaxy.constellations
+          .map((constellation, constellationIndex) => renderConstellationMap(constellation, constellationIndex, totals))
+          .join('')}
+      </div>
+    </article>`;
+}
+
+function renderConstellationMap(constellation, constellationIndex, totals) {
+  const stars = constellation.stars
+    .map((star, starIndex) => renderStar(star, totals, starIndex))
+    .join('');
+
+  return `
+    <section class="constellation-path constellation-path-${constellationIndex + 1}" aria-label="${constellation.name}">
+      <span class="constellation-line" aria-hidden="true"></span>
+      <h4>${constellation.name}</h4>
+      <div class="stars">${stars}</div>
+    </section>`;
+}
+
+function renderStar(star, totals, starIndex = 0) {
+ main
   const status = getStarStatus(star);
   const requirementText = Object.entries(star.requiredStats)
     .map(([key, value]) => `${key} ${value}`)
     .join(', ');
   const canSpend = status.state === 'available' && totals.availablePerkPoints >= star.perkPointCost;
+ codex/outline-core-components-of-virtual-me-59z2br
 
   return `
     <article class="star ${status.state}">
@@ -401,6 +453,22 @@ function renderStar(star, totals) {
         <small>Requires ${requirementText} · Cost ${star.perkPointCost} perk point${star.perkPointCost === 1 ? '' : 's'}</small>
         ${status.reason ? `<small>${status.reason}</small>` : ''}
         ${canSpend ? `<button class="button mini" data-unlock-star="${star.id}">Unlock star</button>` : ''}
+
+  const starDetails = `${star.name}. ${status.label}. Requires ${requirementText}. ${star.description}`;
+  const unlockControl = canSpend
+    ? `<button class="star-orb-button" type="button" data-unlock-star="${star.id}" aria-label="Unlock ${star.name}"></button>`
+    : '<span class="star-orb-button" aria-hidden="true"></span>';
+
+  return `
+    <article class="star star-${starIndex + 1} ${status.state}" aria-label="${starDetails}">
+      ${unlockControl}
+      <div class="star-scanline" aria-hidden="true"></div>
+      <div class="star-label">
+        <p class="star-type">${star.type} · ${status.label}</p>
+        <h5>${star.name}</h5>
+        <small>${requirementText} · ${star.perkPointCost} PP</small>
+        ${status.reason ? `<small>${status.reason}</small>` : ''}
+ main
       </div>
     </article>`;
 }
