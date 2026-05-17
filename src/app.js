@@ -137,6 +137,7 @@ const defaultState = {
 };
 
 let state = loadState();
+let selectedUniverseStarId = null;
 
 const elements = {
   displayName: document.querySelector('#display-name'),
@@ -155,21 +156,8 @@ const elements = {
   nextSteps: document.querySelector('#next-steps'),
   passportOutput: document.querySelector('#passport-output'),
   privacyControls: document.querySelectorAll('[data-share]'),
- codex/outline-core-components-of-virtual-me-2g3dbw
   navItems: document.querySelectorAll('[data-target-screen]'),
   screens: document.querySelectorAll('[data-screen]'),
-
- /outline-core-components-of-virtual-me-l61ler
-  navItems: document.querySelectorAll('[data-target-screen]'),
-  screens: document.querySelectorAll('[data-screen]'),
-
- codex/outline-core-components-of-virtual-me-yjatpv
-  navItems: document.querySelectorAll('[data-target-screen]'),
-  screens: document.querySelectorAll('[data-screen]'),
-
- main
- main
- main
 };
 
 init();
@@ -198,18 +186,11 @@ function init() {
     control.addEventListener('change', renderPassport);
   });
 
- codex/outline-core-components-of-virtual-me-2g3dbw
-
- codex/outline-core-components-of-virtual-me-l61ler
-
- codex/outline-core-components-of-virtual-me-yjatpv
- main
- main
   elements.navItems.forEach((item) => {
     item.addEventListener('click', () => showScreen(item.dataset.targetScreen));
   });
 
-  showScreen('stats');
+  showScreen('universe');
   render();
 }
 
@@ -226,17 +207,6 @@ function showScreen(screenName) {
   });
 }
 
- codex/outline-core-components-of-virtual-me-2g3dbw
-
- codex/outline-core-components-of-virtual-me-l61ler
-
-
-  render();
-}
-
- main
- main
- main
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -387,53 +357,123 @@ function renderActivityLog() {
 
 function renderUniverse() {
   const totals = calculateTotals();
-  elements.universeMap.innerHTML = SKILL_UNIVERSE.map(
-    (galaxy) => `
-      <article class="galaxy">
-        <div>
-          <p class="eyebrow">${galaxy.theme}</p>
-          <h3>${galaxy.name}</h3>
-        </div>
-        <div class="constellations">
-          ${galaxy.constellations
-            .map(
-              (constellation) => `
-                <section class="constellation">
-                  <h4>${constellation.name}</h4>
-                  <div class="stars">
-                    ${constellation.stars.map((star) => renderStar(star, totals)).join('')}
-                  </div>
-                </section>`,
-            )
-            .join('')}
-        </div>
-      </article>`,
-  ).join('');
+  const selectedStar = findStar(selectedUniverseStarId) || allStars()[0];
+  selectedUniverseStarId = selectedStar?.id || null;
 
-  document.querySelectorAll('[data-unlock-star]').forEach((button) => {
-    button.addEventListener('click', () => unlockStar(button.dataset.unlockStar));
+  elements.universeMap.innerHTML = `
+    <section class="universe-viewport" aria-label="Prototype Skill Universe galaxy map">
+      <div class="starfield-layer near" aria-hidden="true"></div>
+      <div class="starfield-layer far" aria-hidden="true"></div>
+      <div class="space-depth-layer far" aria-hidden="true"></div>
+      <div class="space-depth-layer mid" aria-hidden="true"></div>
+      <div class="space-vignette" aria-hidden="true"></div>
+      <div class="map-hud" aria-hidden="true">
+        <span>Skill Universe Visual Test v1</span>
+        <strong>${totals.availablePerkPoints} PP</strong>
+      </div>
+      <div class="zoom-rail" aria-hidden="true">
+        <span>Galaxy</span>
+        <span>Path</span>
+        <span>Star</span>
+      </div>
+      <div class="galaxy-map-core">
+        ${SKILL_UNIVERSE.map((galaxy, galaxyIndex) => renderGalaxyMap(galaxy, galaxyIndex, totals)).join('')}
+      </div>
+      ${renderUniverseSheet(selectedStar, totals)}
+    </section>`;
+
+  document.querySelectorAll('[data-star-action]').forEach((control) => {
+    control.addEventListener('click', () => {
+      if (control.dataset.starAction === 'unlock') {
+        unlockStar(control.dataset.starId);
+        return;
+      }
+
+      selectUniverseStar(control.dataset.starId);
+    });
   });
 }
 
-function renderStar(star, totals) {
+function renderGalaxyMap(galaxy, galaxyIndex, totals) {
+  return `
+    <article class="galaxy-system galaxy-system-${galaxyIndex + 1}" aria-label="${galaxy.name}: ${galaxy.theme}">
+      <span class="galaxy-nebula" aria-hidden="true"></span>
+      <span class="galaxy-core" aria-hidden="true"></span>
+      <div class="galaxy-label">
+        <strong>${galaxy.name}</strong>
+      </div>
+      <div class="constellation-orbits">
+        ${galaxy.constellations
+          .map((constellation, constellationIndex) => renderConstellationMap(constellation, constellationIndex, totals))
+          .join('')}
+      </div>
+    </article>`;
+}
+
+function renderConstellationMap(constellation, constellationIndex, totals) {
+  const stars = constellation.stars
+    .map((star, starIndex) => renderStar(star, totals, starIndex))
+    .join('');
+
+  return `
+    <section class="constellation-path constellation-path-${constellationIndex + 1}" aria-label="${constellation.name}">
+      <span class="constellation-line" aria-hidden="true"></span>
+      <span class="constellation-name">${constellation.name}</span>
+      <div class="stars">${stars}</div>
+    </section>`;
+}
+
+function renderStar(star, totals, starIndex = 0) {
   const status = getStarStatus(star);
   const requirementText = Object.entries(star.requiredStats)
     .map(([key, value]) => `${key} ${value}`)
     .join(', ');
   const canSpend = status.state === 'available' && totals.availablePerkPoints >= star.perkPointCost;
+  const isSelected = selectedUniverseStarId === star.id;
+  const action = canSpend ? 'unlock' : 'select';
+  const actionLabel = canSpend ? `Unlock ${star.name}` : `Inspect ${star.name}`;
+  const starDetails = `${star.name}. ${status.label}. Requires ${requirementText}. ${star.description}`;
 
   return `
-    <article class="star ${status.state}">
-      <span class="star-orb"></span>
-      <div>
-        <p class="star-type">${star.type} Star · ${status.label}</p>
+    <article class="star star-${starIndex + 1} ${status.state} ${isSelected ? 'selected' : ''}" aria-label="${starDetails}">
+      <button class="star-node" type="button" data-star-action="${action}" data-star-id="${star.id}" aria-label="${actionLabel}">
+        <span class="star-pulse" aria-hidden="true"></span>
+      </button>
+      <div class="star-label">
+        <p class="star-type">${star.type} · ${status.label}</p>
         <h5>${star.name}</h5>
-        <p>${star.description}</p>
-        <small>Requires ${requirementText} · Cost ${star.perkPointCost} perk point${star.perkPointCost === 1 ? '' : 's'}</small>
-        ${status.reason ? `<small>${status.reason}</small>` : ''}
-        ${canSpend ? `<button class="button mini" data-unlock-star="${star.id}">Unlock star</button>` : ''}
+        <small>${requirementText}</small>
       </div>
     </article>`;
+}
+
+function renderUniverseSheet(star, totals) {
+  if (!star) {
+    return '';
+  }
+
+  const status = getStarStatus(star);
+  const requirementText = Object.entries(star.requiredStats)
+    .map(([key, value]) => `${key} ${value}`)
+    .join(' · ');
+  const canSpend = status.state === 'available' && totals.availablePerkPoints >= star.perkPointCost;
+
+  return `
+    <aside class="star-detail-sheet ${status.state}" aria-live="polite">
+      <div>
+        <p class="star-type">${star.type} · ${status.label}</p>
+        <h2>${star.name}</h2>
+        <p>${star.description}</p>
+        <small>${requirementText} · ${star.perkPointCost} perk point${star.perkPointCost === 1 ? '' : 's'}</small>
+        ${status.reason ? `<small>${status.reason}</small>` : ''}
+      </div>
+      ${canSpend ? `<button class="map-action" type="button" data-star-action="unlock" data-star-id="${star.id}">Unlock</button>` : ''}
+    </aside>`;
+}
+
+function selectUniverseStar(starId) {
+  selectedUniverseStarId = starId;
+  renderUniverse();
 }
 
 function getStarStatus(star) {
