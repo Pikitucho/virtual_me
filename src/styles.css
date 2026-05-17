@@ -14,10 +14,13 @@
   --green: #1f9b66;
   --danger: #d65f5f;
   --nav-height: 86px;
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+
  codex/outline-core-components-of-virtual-me-59z2br
   --animus-line: rgba(83, 132, 172, 0.15);
   --animus-sweep: rgba(92, 176, 205, 0.22);
 
+ main
  main
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -667,6 +670,76 @@ textarea {
   border-radius: 16px;
   padding: 10px 12px;
   background: rgba(255, 255, 255, 0.5);
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+}
+
+
+.universe-screen {
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100dvh - var(--nav-height));
+  margin: 0 -14px;
+  overflow: hidden;
+  background: #02040c;
+}
+
+.universe-map {
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100dvh - var(--nav-height));
+}
+
+.universe-viewport {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100dvh - var(--nav-height));
+  overflow: hidden;
+  color: #edf8ff;
+  background:
+    radial-gradient(circle at 14% 24%, rgba(87, 196, 255, 0.22), transparent 12rem),
+    radial-gradient(circle at 82% 18%, rgba(166, 110, 255, 0.2), transparent 11rem),
+    radial-gradient(circle at 68% 78%, rgba(255, 169, 74, 0.14), transparent 12rem),
+    linear-gradient(160deg, #02030a 0%, #071024 46%, #01020a 100%);
+  isolation: isolate;
+}
+
+.universe-viewport::before,
+.universe-viewport::after,
+.starfield-layer,
+.space-depth-layer,
+.space-vignette {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+
+.universe-viewport::before {
+  z-index: 1;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.98) 0 1px, transparent 1.7px),
+    radial-gradient(circle, rgba(115, 227, 255, 0.78) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(255, 198, 116, 0.65) 0 1px, transparent 2px);
+  background-position: 0 0, 28px 76px, 112px 48px;
+  background-size: 74px 74px, 132px 132px, 188px 188px;
+  opacity: 0.46;
+  animation: starfieldDrift 42s linear infinite;
+}
+
+.universe-viewport::after {
+  z-index: 7;
+  background:
+    radial-gradient(ellipse at center, transparent 34%, rgba(1, 3, 11, 0.72) 100%),
+    linear-gradient(180deg, rgba(1, 3, 11, 0.22), transparent 28%, rgba(1, 3, 11, 0.44));
+}
+
+.starfield-layer.near {
+  z-index: 2;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 2px);
+  background-position: 18px 20px;
+  background-size: 118px 118px;
+  opacity: 0.5;
+  transform: scale(1.04);
+  animation: starfieldDriftNear 24s linear infinite;
+
 }
 
  codex/outline-core-components-of-virtual-me-59z2br
@@ -684,18 +757,241 @@ textarea {
   border-radius: 24px;
   padding: 16px;
   background: radial-gradient(circle at 0 0, rgba(74, 159, 190, 0.13), rgba(255, 255, 255, 0.54));
+ main
 }
 
-.galaxy h3,
-.constellation h4,
-.star h5 {
-  margin: 0 0 8px;
+.starfield-layer.far {
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(104, 148, 255, 0.56) 0 1px, transparent 2px);
+  background-position: 48px 12px;
+  background-size: 220px 220px;
+  opacity: 0.42;
+  animation: starfieldDriftFar 70s linear infinite;
 }
 
-.constellation {
-  border-left: 1px solid rgba(114, 232, 255, 0.35);
-  padding-left: 14px;
+.space-depth-layer.far {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 34% 44%, rgba(54, 128, 255, 0.18), transparent 17rem),
+    radial-gradient(circle at 78% 70%, rgba(153, 92, 255, 0.12), transparent 18rem);
+  transform: scale(1.2);
+  animation: cinematicPan 26s ease-in-out infinite alternate;
 }
+
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+.space-depth-layer.mid {
+  z-index: 3;
+  background:
+    linear-gradient(118deg, transparent 0 40%, rgba(116, 221, 255, 0.11) 45%, transparent 52% 100%),
+    linear-gradient(28deg, transparent 0 54%, rgba(191, 126, 255, 0.1) 58%, transparent 64% 100%);
+  filter: blur(12px);
+  opacity: 0.62;
+  animation: nebulaSweep 20s ease-in-out infinite alternate;
+}
+
+.space-vignette {
+  z-index: 8;
+  box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.62), inset 0 -80px 110px rgba(0, 0, 0, 0.68);
+}
+
+.map-hud {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  left: 16px;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(232, 248, 255, 0.78);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.8);
+}
+
+.map-hud strong {
+  border: 1px solid rgba(118, 231, 255, 0.24);
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: rgba(6, 15, 32, 0.52);
+  color: #75e4ff;
+  box-shadow: 0 0 18px rgba(117, 228, 255, 0.12);
+}
+
+.zoom-rail {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+  z-index: 12;
+  display: grid;
+  gap: 7px;
+  color: rgba(226, 246, 255, 0.55);
+  font-size: 0.56rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.zoom-rail span {
+  position: relative;
+  padding-right: 16px;
+}
+
+.zoom-rail span::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(116, 221, 255, 0.76);
+  box-shadow: 0 0 16px rgba(116, 221, 255, 0.65);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.galaxy-map-core {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  transform-origin: center;
+  animation: mapFloat 16s ease-in-out infinite alternate;
+}
+
+.galaxy-system {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  transform-origin: center;
+}
+
+.galaxy-system-1 {
+  top: 15%;
+  left: -7%;
+}
+
+.galaxy-system-2 {
+  top: 23%;
+  right: -11%;
+  transform: scale(0.92);
+}
+
+.galaxy-system-3 {
+  right: 14%;
+  bottom: 18%;
+  transform: scale(0.76);
+}
+
+.galaxy-nebula,
+.galaxy-core {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.galaxy-nebula {
+  inset: 6px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.98) 0 4px, transparent 5px),
+    radial-gradient(circle at 48% 52%, rgba(116, 221, 255, 0.58), transparent 3.4rem),
+    conic-gradient(from 18deg, transparent, rgba(116, 221, 255, 0.38), rgba(185, 123, 255, 0.18), transparent, rgba(255, 183, 90, 0.2), transparent);
+  filter: drop-shadow(0 0 34px rgba(116, 221, 255, 0.42));
+  opacity: 0.95;
+  transform: rotate(-8deg) scaleX(1.22);
+  animation: galaxyRotate 38s linear infinite;
+}
+
+.galaxy-core {
+  inset: 96px;
+  background: #eefbff;
+  box-shadow: 0 0 22px rgba(238, 251, 255, 0.95), 0 0 66px rgba(116, 221, 255, 0.5);
+}
+
+.galaxy-system-2 .galaxy-nebula {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.94) 0 4px, transparent 5px),
+    radial-gradient(circle at 46% 52%, rgba(184, 126, 255, 0.56), transparent 3.4rem),
+    conic-gradient(from 180deg, transparent, rgba(184, 126, 255, 0.38), rgba(83, 206, 255, 0.22), transparent);
+}
+
+.galaxy-system-3 .galaxy-nebula {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.94) 0 4px, transparent 5px),
+    radial-gradient(circle at 46% 52%, rgba(255, 190, 103, 0.5), transparent 3rem),
+    conic-gradient(from 90deg, transparent, rgba(255, 190, 103, 0.34), rgba(116, 221, 255, 0.2), transparent);
+}
+
+.galaxy-label {
+  position: absolute;
+  left: 62px;
+  right: 62px;
+  bottom: 34px;
+  color: rgba(240, 250, 255, 0.8);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+}
+
+.constellation-path {
+  position: absolute;
+  inset: 0;
+}
+
+.constellation-line {
+  position: absolute;
+  inset: 38px 20px 58px;
+  border: 1px solid rgba(116, 221, 255, 0.28);
+  border-color: rgba(116, 221, 255, 0.38) transparent transparent rgba(116, 221, 255, 0.24);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 12px rgba(116, 221, 255, 0.24));
+  transform: rotate(-16deg);
+}
+
+.constellation-path-2 .constellation-line {
+  inset: 68px 42px 70px;
+  transform: rotate(29deg);
+}
+
+.constellation-name {
+  position: absolute;
+  top: 54px;
+  left: 68px;
+  color: rgba(226, 246, 255, 0.54);
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.86);
+}
+
+.stars {
+  display: block;
+}
+
+.star {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+}
+
+.star-1 {
+  top: 64px;
+  left: 78px;
+}
+
+.star-2 {
+  top: 116px;
+  left: 154px;
+}
+
+.constellation-path-2 .star-1 {
+  top: 142px;
+  left: 98px;
 
 .stars {
   grid-template-columns: 1fr;
@@ -709,40 +1005,216 @@ textarea {
   border-radius: 20px;
   padding: 14px;
   background: rgba(255, 255, 255, 0.54);
+ main
 }
 
-.star-orb {
-  width: 24px;
-  height: 24px;
-  margin-top: 4px;
+.star-node {
+  position: absolute;
+  inset: 11px;
+  display: grid;
+  place-items: center;
+  border: 0;
   border-radius: 999px;
-  background: #56607e;
-  box-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+  background: #4b5368;
+  box-shadow: 0 0 14px rgba(148, 163, 184, 0.28);
+  cursor: pointer;
 }
 
-.star.available .star-orb {
-  background: var(--gold);
-  box-shadow: 0 0 28px rgba(255, 211, 122, 0.75);
+.star-node::before {
+  width: 7px;
+  height: 7px;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.78);
+  content: "";
 }
+
+.star-pulse {
+  position: absolute;
+  inset: -7px;
+  border: 1px solid currentColor;
+  border-radius: inherit;
+  color: rgba(148, 163, 184, 0.34);
+  opacity: 0.55;
+  animation: starPulse 2.8s ease-in-out infinite;
+}
+
+.star.locked .star-node {
+  background: #394052;
+  opacity: 0.74;
+}
+
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+.star.available .star-node {
+  background: #f6b95f;
+  box-shadow: 0 0 20px rgba(255, 193, 91, 0.92), 0 0 54px rgba(255, 193, 91, 0.32);
+}
+
+.star.unlocked .star-node {
+  background: #75e4ff;
+  box-shadow: 0 0 20px rgba(117, 228, 255, 0.98), 0 0 62px rgba(117, 228, 255, 0.46);
+}
+
+.star.paused .star-node {
+  background: #ff7575;
+  box-shadow: 0 0 18px rgba(255, 117, 117, 0.82);
 
 .star.unlocked .star-orb {
   background: var(--cyan);
   box-shadow: 0 0 34px rgba(114, 232, 255, 0.9);
+ main
 }
 
-.star.paused .star-orb {
-  background: var(--danger);
-  box-shadow: 0 0 24px rgba(255, 139, 139, 0.6);
+.star.selected .star-node,
+.star-node:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 7px;
+  box-shadow: 0 0 26px rgba(255, 255, 255, 0.72), 0 0 72px rgba(117, 228, 255, 0.4);
+}
+
+.star-label {
+  position: absolute;
+  top: 34px;
+  left: 46px;
+  width: 128px;
+  padding: 8px 10px;
+  border: 1px solid rgba(116, 221, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(3, 8, 18, 0.68);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transform: translateY(6px) scale(0.96);
+  transition: opacity 160ms ease, transform 160ms ease;
+  pointer-events: none;
+}
+
+.star:hover .star-label,
+.star:focus-within .star-label,
+.star.selected .star-label {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .star-type {
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+  margin: 0;
+  color: #ffc96d !important;
+  font-size: 0.56rem;
+
   margin: 0 0 4px;
   color: var(--gold) !important;
   font-size: 0.72rem;
+ main
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+.star-label h5 {
+  margin: 3px 0;
+  color: #f4fbff;
+  font-size: 0.78rem;
+}
+
+.star-label small,
+.star-detail-sheet small {
+  display: block;
+  margin-top: 5px;
+  color: rgba(226, 246, 255, 0.66);
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.star-detail-sheet {
+  position: absolute;
+  right: 12px;
+  bottom: 14px;
+  left: 12px;
+  z-index: 14;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  border: 1px solid rgba(116, 221, 255, 0.2);
+  border-radius: 24px;
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(5, 11, 25, 0.78), rgba(9, 18, 38, 0.58));
+  box-shadow: 0 -18px 50px rgba(0, 0, 0, 0.36), inset 0 0 28px rgba(116, 221, 255, 0.06);
+  backdrop-filter: blur(14px);
+}
+
+.star-detail-sheet h2 {
+  margin: 3px 0 6px;
+  color: #f5fbff;
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+.star-detail-sheet p {
+  max-width: 34rem;
+  margin: 0;
+  color: rgba(226, 246, 255, 0.76);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.map-action {
+  flex: 0 0 auto;
+  min-height: 40px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 15px;
+  background: linear-gradient(135deg, #ffd36e, #f6a95f);
+  color: #241400;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 0 28px rgba(255, 193, 91, 0.34);
+  cursor: pointer;
+}
+
+@keyframes starfieldDrift {
+  from { background-position: 0 0, 28px 76px, 112px 48px; }
+  to { background-position: -74px 148px, 160px -56px, -76px -120px; }
+}
+
+@keyframes starfieldDriftNear {
+  from { background-position: 18px 20px; }
+  to { background-position: -218px 256px; }
+}
+
+@keyframes starfieldDriftFar {
+  from { background-position: 48px 12px; }
+  to { background-position: 268px -208px; }
+}
+
+@keyframes cinematicPan {
+  from { transform: translate3d(-18px, -10px, 0) scale(1.16); }
+  to { transform: translate3d(22px, 18px, 0) scale(1.25); }
+}
+
+@keyframes nebulaSweep {
+  from { transform: translateX(-10%) rotate(-2deg); }
+  to { transform: translateX(10%) rotate(3deg); }
+}
+
+@keyframes galaxyRotate {
+  to { transform: rotate(352deg) scaleX(1.22); }
+}
+
+@keyframes mapFloat {
+  from { transform: translate3d(-8px, -6px, 0) scale(1.02); }
+  to { transform: translate3d(8px, 8px, 0) scale(1.06); }
+}
+
+@keyframes starPulse {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 0.72; transform: scale(1.36); }
+}
+
 
 .star small {
   display: block;
@@ -1107,6 +1579,7 @@ button.star-orb-button {
  main
 }
 
+ main
 .privacy-controls {
   display: grid;
   gap: 10px;
@@ -1139,7 +1612,7 @@ pre {
   right: max(10px, calc((100vw - 520px) / 2 + 10px));
   bottom: max(10px, env(safe-area-inset-bottom));
   left: max(10px, calc((100vw - 520px) / 2 + 10px));
-  z-index: 5;
+  z-index: 30;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
@@ -1196,6 +1669,29 @@ pre {
     margin: 0 auto;
   }
 
+  .universe-screen {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .galaxy-system-1 {
+    left: 8%;
+  }
+
+  .galaxy-system-2 {
+    right: 8%;
+  }
+
+  .galaxy-system-3 {
+    right: 36%;
+  }
+
+  .star-detail-sheet {
+    right: max(18px, calc((100vw - 760px) / 2));
+    left: max(18px, calc((100vw - 760px) / 2));
+  }
+
   .stars {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1207,7 +1703,13 @@ pre {
   .animated-animus-background::after,
   .animus-grid-layer,
   .animus-light-sweep,
-  .animus-depth-plane {
+  .animus-depth-plane,
+  .universe-viewport::before,
+  .starfield-layer,
+  .space-depth-layer,
+  .galaxy-map-core,
+  .galaxy-nebula,
+  .star-pulse {
     animation: none;
   }
 }

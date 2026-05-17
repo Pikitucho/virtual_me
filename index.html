@@ -15,7 +15,7 @@
     </div>
 
     <main class="app-shell" aria-label="Virtual Me mobile game prototype">
-      <section id="CharacterScreen" class="screen character-screen is-active" data-screen="stats" data-component="CharacterScreen" aria-label="CharacterScreen">
+      <section id="CharacterScreen" class="screen character-screen" data-screen="stats" data-component="CharacterScreen" aria-label="CharacterScreen">
         <div class="simulation-aura" aria-hidden="true"></div>
 
         <header class="level-hud" aria-live="polite">
@@ -88,6 +88,10 @@
         </div>
       </section>
 
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+      <section id="universe-screen" class="screen universe-screen is-active" data-screen="universe" aria-label="Skill Universe galaxy map">
+        <div id="universe-map" class="universe-map" aria-live="polite"></div>
+
       <section id="universe-screen" class="screen panel-screen" data-screen="universe">
         <div class="panel-card universe-card">
           <div class="section-heading">
@@ -107,6 +111,7 @@
           </div>
           <div id="universe-map" class="universe-map" aria-live="polite"></div>
         </div>
+ main
       </section>
 
       <section id="settings-screen" class="screen panel-screen" data-screen="settings">
@@ -133,7 +138,7 @@
       </section>
 
       <nav class="bottom-nav" aria-label="Primary">
-        <button class="nav-item is-active" type="button" data-target-screen="stats">
+        <button class="nav-item" type="button" data-target-screen="stats">
           <span>✦</span>
           Stats
         </button>
@@ -141,7 +146,7 @@
           <span>◆</span>
           Activities
         </button>
-        <button class="nav-item" type="button" data-target-screen="universe">
+        <button class="nav-item is-active" type="button" data-target-screen="universe">
           <span>✧</span>
           Skill Universe
         </button>
