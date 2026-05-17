@@ -357,6 +357,7 @@ function renderActivityLog() {
 
 function renderUniverse() {
   const totals = calculateTotals();
+ codex/create-placeholder-skill-universe-screen-qvjvd9
   const selectedStar = findStar(selectedUniverseStarId) || allStars()[0];
   selectedUniverseStarId = selectedStar?.id || null;
 
@@ -374,11 +375,46 @@ function renderUniverse() {
       <div class="zoom-rail" aria-hidden="true">
         <span>Galaxy</span>
         <span>Path</span>
+
+ codex/outline-core-components-of-virtual-me-59z2br
+  elements.universeMap.innerHTML = SKILL_UNIVERSE.map(
+    (galaxy) => `
+      <article class="galaxy">
+        <div>
+          <p class="eyebrow">${galaxy.theme}</p>
+          <h3>${galaxy.name}</h3>
+        </div>
+        <div class="constellations">
+          ${galaxy.constellations
+            .map(
+              (constellation) => `
+                <section class="constellation">
+                  <h4>${constellation.name}</h4>
+                  <div class="stars">
+                    ${constellation.stars.map((star) => renderStar(star, totals)).join('')}
+                  </div>
+                </section>`,
+            )
+            .join('')}
+        </div>
+      </article>`,
+  ).join('');
+
+  elements.universeMap.innerHTML = `
+    <section class="universe-viewport" aria-label="Prototype Skill Universe galaxy map">
+      <div class="space-depth-layer far" aria-hidden="true"></div>
+      <div class="space-depth-layer mid" aria-hidden="true"></div>
+      <div class="space-horizon" aria-hidden="true"></div>
+      <div class="zoom-rail" aria-hidden="true">
+        <span>Galaxy</span>
+        <span>Constellation</span>
+ main
         <span>Star</span>
       </div>
       <div class="galaxy-map-core">
         ${SKILL_UNIVERSE.map((galaxy, galaxyIndex) => renderGalaxyMap(galaxy, galaxyIndex, totals)).join('')}
       </div>
+ codex/create-placeholder-skill-universe-screen-qvjvd9
       ${renderUniverseSheet(selectedStar, totals)}
     </section>`;
 
@@ -394,13 +430,33 @@ function renderUniverse() {
   });
 }
 
+
+      <p class="universe-hint">Placeholder navigation concept: life domains orbit as galaxies; skill paths arc as constellations; stars glow by lock state.</p>
+    </section>`;
+ main
+
+  document.querySelectorAll('[data-unlock-star]').forEach((button) => {
+    button.addEventListener('click', () => unlockStar(button.dataset.unlockStar));
+  });
+}
+
+ codex/outline-core-components-of-virtual-me-59z2br
+function renderStar(star, totals) {
+
+ main
 function renderGalaxyMap(galaxy, galaxyIndex, totals) {
   return `
     <article class="galaxy-system galaxy-system-${galaxyIndex + 1}" aria-label="${galaxy.name}: ${galaxy.theme}">
       <span class="galaxy-nebula" aria-hidden="true"></span>
+ codex/create-placeholder-skill-universe-screen-qvjvd9
       <span class="galaxy-core" aria-hidden="true"></span>
       <div class="galaxy-label">
         <strong>${galaxy.name}</strong>
+
+      <div class="galaxy-label">
+        <p>${galaxy.theme}</p>
+        <h3>${galaxy.name}</h3>
+ main
       </div>
       <div class="constellation-orbits">
         ${galaxy.constellations
@@ -418,21 +474,33 @@ function renderConstellationMap(constellation, constellationIndex, totals) {
   return `
     <section class="constellation-path constellation-path-${constellationIndex + 1}" aria-label="${constellation.name}">
       <span class="constellation-line" aria-hidden="true"></span>
+ codex/create-placeholder-skill-universe-screen-qvjvd9
       <span class="constellation-name">${constellation.name}</span>
+
+      <h4>${constellation.name}</h4>
+ main
       <div class="stars">${stars}</div>
     </section>`;
 }
 
 function renderStar(star, totals, starIndex = 0) {
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+
+ main
+ main
   const status = getStarStatus(star);
   const requirementText = Object.entries(star.requiredStats)
     .map(([key, value]) => `${key} ${value}`)
     .join(', ');
   const canSpend = status.state === 'available' && totals.availablePerkPoints >= star.perkPointCost;
+ codex/create-placeholder-skill-universe-screen-qvjvd9
   const isSelected = selectedUniverseStarId === star.id;
   const action = canSpend ? 'unlock' : 'select';
   const actionLabel = canSpend ? `Unlock ${star.name}` : `Inspect ${star.name}`;
   const starDetails = `${star.name}. ${status.label}. Requires ${requirementText}. ${star.description}`;
+
+ codex/outline-core-components-of-virtual-me-59z2br
+ main
 
   return `
     <article class="star star-${starIndex + 1} ${status.state} ${isSelected ? 'selected' : ''}" aria-label="${starDetails}">
@@ -466,6 +534,26 @@ function renderUniverseSheet(star, totals) {
         <p>${star.description}</p>
         <small>${requirementText} · ${star.perkPointCost} perk point${star.perkPointCost === 1 ? '' : 's'}</small>
         ${status.reason ? `<small>${status.reason}</small>` : ''}
+ codex/create-placeholder-skill-universe-screen-qvjvd9
+
+        ${canSpend ? `<button class="button mini" data-unlock-star="${star.id}">Unlock star</button>` : ''}
+
+  const starDetails = `${star.name}. ${status.label}. Requires ${requirementText}. ${star.description}`;
+  const unlockControl = canSpend
+    ? `<button class="star-orb-button" type="button" data-unlock-star="${star.id}" aria-label="Unlock ${star.name}"></button>`
+    : '<span class="star-orb-button" aria-hidden="true"></span>';
+
+  return `
+    <article class="star star-${starIndex + 1} ${status.state}" aria-label="${starDetails}">
+      ${unlockControl}
+      <div class="star-scanline" aria-hidden="true"></div>
+      <div class="star-label">
+        <p class="star-type">${star.type} · ${status.label}</p>
+        <h5>${star.name}</h5>
+        <small>${requirementText} · ${star.perkPointCost} PP</small>
+        ${status.reason ? `<small>${status.reason}</small>` : ''}
+ main
+ main
       </div>
       ${canSpend ? `<button class="map-action" type="button" data-star-action="unlock" data-star-id="${star.id}">Unlock</button>` : ''}
     </aside>`;
